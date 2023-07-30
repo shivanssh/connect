@@ -12,7 +12,6 @@ export const register = async (req, res) => {
       email,
       password,
       picturePath,
-      friends,
       location,
       occupation,
     } = req.body;
@@ -24,7 +23,6 @@ export const register = async (req, res) => {
         email,
         password,
         picturePath,
-        friends,
         location,
         occupation
       )
@@ -55,14 +53,17 @@ export const register = async (req, res) => {
       email,
       password: passwordHash,
       picturePath,
-      friends,
+      friends: [],
       location,
       occupation,
-      impression: Math.floor(Math.random() * 10000),
-      viewProfiled: Math.floor(Math.random() * 10000),
+      impressions: Math.floor(Math.random() * 10000),
+      viewedProfile: Math.floor(Math.random() * 10000),
     });
 
-    res.status(201).json(userCreated);
+    const userWithoutPassword = userCreated.toObject();
+    delete userWithoutPassword.password;
+
+    res.status(201).json({ user: userWithoutPassword });
   } catch (err) {
     res.status(500).json({ Error: `${err.message}` });
   }
@@ -73,15 +74,16 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(req.body);
 
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(500).json({ msg: "User does not exits. " });
+      return res.status(500).json({ msg: "User does not exits. " });
     }
 
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
-      res.status(500).json({ msg: "Invalid Credentials. " });
+      return res.status(500).json({ msg: "Invalid Credentials. " });
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
@@ -91,7 +93,7 @@ export const login = async (req, res) => {
     const userWithoutPassword = user.toObject();
     delete userWithoutPassword.password;
 
-    res.status(200).json({ token, userWithoutPassword });
+    res.status(200).json({ token, user: userWithoutPassword });
   } catch (err) {
     res.status(500).json({ Error: `${err.message}` });
   }
