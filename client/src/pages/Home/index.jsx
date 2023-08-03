@@ -3,6 +3,9 @@ import { Box, useMediaQuery } from "@mui/material";
 import Navbar from "pages/Navbar";
 import MyPostWidget from "pages/Widget/MyPostWidget";
 import UserWidget from "pages/Widget/UserWidget";
+import PostsWidget from "pages/Widget/PostsWidget";
+import AdvertWidget from "pages/Widget/AdvertWidget";
+import FriendListWidget from "pages/Widget/FriendListWidget";
 
 const Home = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
@@ -26,9 +29,13 @@ const Home = () => {
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
           <MyPostWidget picturePath={picturePath} />
+          <PostsWidget userId={_id} />
         </Box>
         {isNonMobileScreens && (
-          <Box flexBasis={isNonMobileScreens ? "26%" : undefined}></Box>
+          <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
+            <AdvertWidget />
+            <FriendListWidget userId={_id} />
+          </Box>
         )}
       </Box>
     </Box>

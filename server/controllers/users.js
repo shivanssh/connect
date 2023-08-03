@@ -26,6 +26,7 @@ export const getUserFriends = async (req, res) => {
     const friends = await Promise.all(
       user.friends.map((id) => User.findById(id))
     );
+
     const formattedFriends = friends.map(
       ({ _id, firstName, lastName, picturePath, location, occupation }) => ({
         _id,
@@ -48,10 +49,14 @@ export const addRemoveFriend = async (req, res) => {
   try {
     const { id, friendId } = req.params;
 
+    if (id === friendId) {
+      return res
+        .status(500)
+        .json({ msg: "Can't add and remove same user from friend list." });
+    }
+
     const user = await User.findById(id);
     const friend = await User.findById(friendId);
-
-    console.log(user, friend);
 
     if (user.friends.includes(friendId)) {
       user.friends = user.friends.filter((user) => user !== friendId);

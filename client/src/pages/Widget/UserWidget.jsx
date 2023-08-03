@@ -66,13 +66,13 @@ const UserWidget = ({ picturePath, userId }) => {
       <Box p="1rem 0">
         <FlexStart gap="1rem" mb="0.5rem">
           <WorkOutlineOutlined fontSize="large" sx={{ color: main }} />
-          <Typography variant="h4" fontWeight="500" color={medium}>
+          <Typography variant="h5" fontWeight="500" color={medium}>
             {occupation}
           </Typography>
         </FlexStart>
         <FlexStart gap="1rem" mb="0.5rem">
           <LocationOnOutlined fontSize="large" sx={{ color: main }} />
-          <Typography variant="h4" fontWeight="500" color={medium}>
+          <Typography variant="h5" fontWeight="500" color={medium}>
             {location}
           </Typography>
         </FlexStart>

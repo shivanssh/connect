@@ -61,10 +61,8 @@ const Form = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:600px)");
 
   const { isSuccess, isLoading, token } = useSelector((state) => state);
-  console.log("----form in rerender");
 
   useEffect(() => {
-    console.log(isSuccess);
     if (pageType === "register" && isSuccess) {
       setPageType("login");
     }

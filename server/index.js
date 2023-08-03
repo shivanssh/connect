@@ -10,7 +10,7 @@ import connectDB from "./config/db.js";
 import { register } from "./controllers/auth.js";
 import authRoutes from "./routes/auth.js";
 import usersRoutes from "./routes/users.js";
-import postsRoutes from "./routes/users.js";
+import postsRoutes from "./routes/posts.js";
 import { createPost } from "./controllers/posts.js";
 import { protect } from "./middleware/auth.js";
 
