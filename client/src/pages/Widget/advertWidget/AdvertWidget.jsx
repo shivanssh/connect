@@ -1,12 +1,13 @@
-import { useTheme } from "@emotion/react";
-import { Typography } from "@mui/material";
-import { FlexBetween, WidgetWrapper } from "components/StyledComponent";
+import { useTheme } from '@emotion/react'
+import { Typography } from '@mui/material'
+import { FlexBetween, WidgetWrapper } from 'components/StyledComponent'
 
 const AdvertWidget = () => {
-  const { palette } = useTheme();
-  const dark = palette.neutral.dark;
-  const main = palette.neutral.main;
-  const medium = palette.neutral.medium;
+  const { palette } = useTheme()
+  const dark = palette.neutral.dark
+  const main = palette.neutral.main
+  const medium = palette.neutral.medium
+
   return (
     <WidgetWrapper>
       <FlexBetween>
@@ -20,8 +21,8 @@ const AdvertWidget = () => {
         width="100%"
         alt="advert"
         style={{
-          borderRadius: "0.5rem",
-          margin: "0.2rem 0",
+          borderRadius: '0.5rem',
+          margin: '0.2rem 0',
         }}
       />
       <FlexBetween>
@@ -33,7 +34,7 @@ const AdvertWidget = () => {
         is exfoliating skin and shining like light.
       </Typography>
     </WidgetWrapper>
-  );
-};
+  )
+}
 
-export default AdvertWidget;
+export default AdvertWidget

@@ -1,37 +1,37 @@
-import { useTheme } from "@emotion/react";
-import { Typography, Box } from "@mui/material";
-import Friend from "components/Friend";
-import { WidgetWrapper } from "components/StyledComponent";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setFriends } from "state";
+import { useTheme } from '@emotion/react'
+import { Typography, Box } from '@mui/material'
+import Friend from 'components/friends/Friend'
+import { WidgetWrapper } from 'components/StyledComponent'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setFriends } from 'state'
 
 const FriendListWidget = ({ userId }) => {
-  const { palette } = useTheme();
-  const dispatch = useDispatch();
-  const friends = useSelector((state) => state.user.friends);
-  const token = useSelector((state) => state.token);
+  const { palette } = useTheme()
+  const dispatch = useDispatch()
+  const friends = useSelector((state) => state.user.friends)
+  const token = useSelector((state) => state.token)
 
   const getFriends = async () => {
     try {
       const res = await fetch(`http://localhost:3001/users/friends/${userId}`, {
-        method: "GET",
+        method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-      });
+      })
 
-      const data = await res.json();
-      dispatch(setFriends({ friends: data }));
+      const data = await res.json()
+      dispatch(setFriends({ friends: data }))
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   useEffect(() => {
-    getFriends();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    getFriends()
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <WidgetWrapper mt="1rem">
@@ -50,10 +50,10 @@ const FriendListWidget = ({ userId }) => {
                 subtitle={occupation}
               />
             </Box>
-          );
+          )
         })}
     </WidgetWrapper>
-  );
-};
+  )
+}
 
-export default FriendListWidget;
+export default FriendListWidget

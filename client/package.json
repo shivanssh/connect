@@ -27,13 +27,26 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "lint": "eslint --ignore-path .gitignore .",
+    "eject": "react-scripts eject",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.{js,jsx,css,scss}\"",
+    "coverage": "npm run test -- --coverage --collectCoverageFrom='src/**/**/*.{js,jsx}'",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "plugin:jest-dom/recommended"
+    ],
+    "rules": {
+      "testing-library/no-render-in-setup": [
+        "error",
+        {
+          "allowTestingFrameworkSetupHook": "beforeEach"
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [
@@ -46,5 +59,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "eslint-plugin-jest-dom": "^5.0.2",
+    "jest": "^27.5.1",
+    "jest-cli": "^29.6.2",
+    "msw": "^1.2.3",
+    "prettier": "^3.0.1",
+    "husky": "^8.0.0"
   }
 }

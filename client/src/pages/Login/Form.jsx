@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useTheme } from "@emotion/react";
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useTheme } from '@emotion/react'
 import {
   Box,
   Button,
@@ -11,87 +11,87 @@ import {
   TextField,
   Typography,
   useMediaQuery,
-} from "@mui/material";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import * as yup from "yup";
-import { Formik } from "formik";
-import Dropzone from "react-dropzone";
-import { FlexBetween } from "components/StyledComponent";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { registerUser, userLogin } from "state";
+} from '@mui/material'
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import * as yup from 'yup'
+import { Formik } from 'formik'
+import Dropzone from 'react-dropzone'
+import { FlexBetween } from 'components/StyledComponent'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { registerUser, userLogin } from 'state'
 
 const registerSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("enter valid email").required("required"),
-  password: yup.string().required("required"),
-  location: yup.string().required("required"),
-  occupation: yup.string().required("required"),
-  picture: yup.string().required("required"),
-});
+  firstName: yup.string().required('required'),
+  lastName: yup.string().required('required'),
+  email: yup.string().email('enter valid email').required('required'),
+  password: yup.string().required('required'),
+  location: yup.string().required('required'),
+  occupation: yup.string().required('required'),
+  picture: yup.string().required('required'),
+})
 
 const loginSchema = yup.object().shape({
-  email: yup.string().required("required"),
-  password: yup.string().required("required"),
-});
+  email: yup.string().required('required'),
+  password: yup.string().required('required'),
+})
 
 const registerInitialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  location: "",
-  occupation: "",
-  picture: "",
-};
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  location: '',
+  occupation: '',
+  picture: '',
+}
 
 const loginInitialValues = {
-  email: "",
-  password: "",
-};
+  email: '',
+  password: '',
+}
 
 const Form = () => {
-  const [pageType, setPageType] = useState("login");
-  const [showPassword, setShowPassword] = useState(false);
-  const { palette } = useTheme();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const isLoginPage = pageType === "login";
-  const isRegisterPage = pageType === "register";
-  const isNonMobileScreens = useMediaQuery("(min-width:600px)");
+  const [pageType, setPageType] = useState('login')
+  const [showPassword, setShowPassword] = useState(false)
+  const { palette } = useTheme()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const isLoginPage = pageType === 'login'
+  const isRegisterPage = pageType === 'register'
+  const isNonMobileScreens = useMediaQuery('(min-width:600px)')
 
-  const { isSuccess, isLoading, token } = useSelector((state) => state);
+  const { isSuccess, isLoading, token } = useSelector((state) => state)
 
   useEffect(() => {
-    if (pageType === "register" && isSuccess) {
-      setPageType("login");
+    if (pageType === 'register' && isSuccess) {
+      setPageType('login')
     }
 
-    if (pageType === "login" && isSuccess && token) {
-      navigate("/home");
+    if (pageType === 'login' && isSuccess && token) {
+      navigate('/home')
     }
-  }, [isSuccess, pageType, navigate, token]);
+  }, [isSuccess, pageType, navigate, token])
 
   const register = async (values, onSubmitProps) => {
-    const formData = new FormData();
+    const formData = new FormData()
     for (let value in values) {
-      formData.append(value, values[value]);
+      formData.append(value, values[value])
     }
-    formData.append("picturePath", values.picture.name);
-    dispatch(registerUser(formData));
-    onSubmitProps.resetForm();
-  };
+    formData.append('picturePath', values.picture.name)
+    dispatch(registerUser(formData))
+    onSubmitProps.resetForm()
+  }
 
   const login = (values, onSubmitProps) => {
-    dispatch(userLogin(values));
-    onSubmitProps.resetForm();
-  };
+    dispatch(userLogin(values))
+    onSubmitProps.resetForm()
+  }
 
   const handleSubmit = (values, onSubmitProps) => {
-    pageType === "login"
+    pageType === 'login'
       ? login(values, onSubmitProps)
-      : register(values, onSubmitProps);
-  };
+      : register(values, onSubmitProps)
+  }
 
   return (
     <Formik
@@ -115,8 +115,8 @@ const Form = () => {
             gap="15px"
             gridTemplateColumns="repeat(4 , minmax(0, 1fr))"
             sx={{
-              "&>div": {
-                gridColumn: isNonMobileScreens ? undefined : "span 4",
+              '&>div': {
+                gridColumn: isNonMobileScreens ? undefined : 'span 4',
               },
             }}
           >
@@ -133,7 +133,7 @@ const Form = () => {
                   }
                   helperText={touched.firstName && errors.firstName}
                   sx={{
-                    gridColumn: "span 2",
+                    gridColumn: 'span 2',
                   }}
                 />
                 <TextField
@@ -145,7 +145,7 @@ const Form = () => {
                   error={Boolean(touched.lastName) && Boolean(errors.lastName)}
                   helperText={touched.lastName && errors.lastName}
                   sx={{
-                    gridColumn: "span 2",
+                    gridColumn: 'span 2',
                   }}
                 />
                 <TextField
@@ -157,7 +157,7 @@ const Form = () => {
                   error={Boolean(touched.location) && Boolean(errors.location)}
                   helperText={touched.location && errors.location}
                   sx={{
-                    gridColumn: "span 2",
+                    gridColumn: 'span 2',
                   }}
                 />
                 <TextField
@@ -171,7 +171,7 @@ const Form = () => {
                   }
                   helperText={touched.occupation && errors.occupation}
                   sx={{
-                    gridColumn: "span 2",
+                    gridColumn: 'span 2',
                   }}
                 />
                 <Box
@@ -184,7 +184,7 @@ const Form = () => {
                     acceptedFiles=".jpg,.jpeg,.png"
                     multiple={false}
                     onDrop={(acceptedFiles) => {
-                      setFieldValue("picture", acceptedFiles[0]);
+                      setFieldValue('picture', acceptedFiles[0])
                     }}
                   >
                     {({ getRootProps, getInputProps }) => (
@@ -193,7 +193,7 @@ const Form = () => {
                         border={`2px dashed ${palette.primary.main}`}
                         p="1rem"
                         sx={{
-                          "&:hover": { cursor: "pointer" },
+                          '&:hover': { cursor: 'pointer' },
                         }}
                       >
                         <input {...getInputProps()} />
@@ -220,13 +220,13 @@ const Form = () => {
               error={Boolean(touched.email) && Boolean(errors.email)}
               helperText={touched.email && errors.email}
               sx={{
-                gridColumn: "span 4",
+                gridColumn: 'span 4',
               }}
             />
             <TextField
               label="Password"
               name="password"
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               onPaste={(e) => e.preventDefault()}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -234,7 +234,7 @@ const Form = () => {
               error={Boolean(touched.password) && Boolean(errors.password)}
               helperText={touched.password && errors.password}
               sx={{
-                gridColumn: "span 4",
+                gridColumn: 'span 4',
               }}
               InputProps={{
                 endAdornment: (
@@ -256,39 +256,39 @@ const Form = () => {
               fullWidth
               type="submit"
               sx={{
-                m: "2rem 0",
-                p: "1rem",
+                m: '2rem 0',
+                p: '1rem',
                 backgroundColor: palette.primary.main,
                 color: palette.background.alt,
-                "&:hover": { color: palette.primary.main },
+                '&:hover': { color: palette.primary.main },
               }}
             >
-              {isLoginPage ? "Login" : "Register"}
+              {isLoginPage ? 'Login' : 'Register'}
               {isLoading && <CircularProgress size="1.5rem" />}
             </Button>
             <Typography
               onClick={() => {
-                setPageType(isLoginPage ? "register" : "login");
-                resetForm();
+                setPageType(isLoginPage ? 'register' : 'login')
+                resetForm()
               }}
               sx={{
-                textDecoration: "underline",
+                textDecoration: 'underline',
                 color: palette.primary.main,
-                "&:hover": {
-                  cursor: "pointer",
+                '&:hover': {
+                  cursor: 'pointer',
                   color: palette.neutral.dark,
                 },
               }}
             >
               {isLoginPage
                 ? "Didn't have account? Sign-up here."
-                : "Already have an account? Login here."}
+                : 'Already have an account? Login here.'}
             </Typography>
           </Box>
         </form>
       )}
     </Formik>
-  );
-};
+  )
+}
 
-export default Form;
+export default Form

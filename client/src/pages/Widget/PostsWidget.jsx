@@ -1,50 +1,50 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "state";
-import PostWidget from "./PostWidget";
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setPosts } from 'state'
+import PostWidget from './PostWidget'
 
 const PostsWidget = ({ userId, isProfile = false }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const token = useSelector((state) => state.token);
-  const posts = useSelector((state) => state.posts);
+  const token = useSelector((state) => state.token)
+  const posts = useSelector((state) => state.posts)
 
   const getPosts = async () => {
-    const res = await fetch("http://localhost:3001/posts", {
-      method: "GET",
+    const res = await fetch('http://localhost:3001/posts', {
+      method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
-    });
+    })
 
-    const posts = await res.json();
+    const posts = await res.json()
 
     if (posts) {
-      dispatch(setPosts({ posts }));
+      dispatch(setPosts({ posts }))
     }
-  };
+  }
 
   const getUserPosts = async () => {
     const res = await fetch(`http://localhost:3001/posts/${userId}/posts`, {
-      method: "GET",
+      method: 'GET',
       headers: { Authorization: `Bearer ${token}` },
-    });
+    })
 
-    const UserPosts = await res.json();
+    const UserPosts = await res.json()
 
     if (posts) {
-      dispatch(setPosts({ posts: UserPosts }));
+      dispatch(setPosts({ posts: UserPosts }))
     }
-  };
+  }
 
   useEffect(() => {
     if (isProfile) {
-      getUserPosts();
+      getUserPosts()
     } else {
-      getPosts();
+      getPosts()
     }
-  }, []);
+  }, [])
 
   if (!posts.length) {
-    return null;
+    return null
   }
 
   return (
@@ -74,10 +74,10 @@ const PostsWidget = ({ userId, isProfile = false }) => {
             likes={likes}
             comments={comments}
           />
-        )
+        ),
       )}
     </>
-  );
-};
+  )
+}
 
-export default PostsWidget;
+export default PostsWidget

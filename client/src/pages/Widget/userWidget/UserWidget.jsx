@@ -1,31 +1,31 @@
-import { useTheme } from "@emotion/react";
+import { useTheme } from '@emotion/react'
 import {
   EditOutlined,
   LocationOnOutlined,
   ManageAccountsOutlined,
   WorkOutlineOutlined,
-} from "@mui/icons-material";
-import { Box, Divider, Typography } from "@mui/material";
+} from '@mui/icons-material'
+import { Box, Divider, Typography } from '@mui/material'
 import {
   FlexBetween,
   FlexStart,
   WidgetWrapper,
-} from "components/StyledComponent";
-import UserImage from "components/UserImage";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+} from 'components/StyledComponent'
+import UserImage from 'components/userImage/UserImage'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const UserWidget = ({ picturePath, userId }) => {
-  const navigate = useNavigate();
-  const { palette } = useTheme();
+  const navigate = useNavigate()
+  const { palette } = useTheme()
 
-  const dark = palette.neutral.dark;
-  const main = palette.neutral.main;
-  const medium = palette.neutral.medium;
+  const dark = palette.neutral.dark
+  const main = palette.neutral.main
+  const medium = palette.neutral.medium
 
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user)
   if (!user) {
-    return null;
+    return null
   }
   const {
     firstName,
@@ -35,7 +35,7 @@ const UserWidget = ({ picturePath, userId }) => {
     friends,
     viewedProfile,
     impressions,
-  } = user;
+  } = user
   return (
     <WidgetWrapper>
       {/* FIRST ROW */}
@@ -49,7 +49,7 @@ const UserWidget = ({ picturePath, userId }) => {
               fontWeight="500"
               onClick={() => navigate(`/profile/${userId}`)}
               sx={{
-                "&:hover": { cursor: "pointer", color: palette.primary.light },
+                '&:hover': { cursor: 'pointer', color: palette.primary.light },
               }}
             >
               {firstName} {lastName}
@@ -130,7 +130,7 @@ const UserWidget = ({ picturePath, userId }) => {
         </FlexBetween>
       </Box>
     </WidgetWrapper>
-  );
-};
+  )
+}
 
-export default UserWidget;
+export default UserWidget
