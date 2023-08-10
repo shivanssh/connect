@@ -16,6 +16,11 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^8.2.0",
-    "husky": "^8.0.0"
+    "husky": "^8.0.0",
+    "lint-staged": "^13.2.3"
+  },
+  "lint-staged":{
+    "*.{js,jsx}":["eslint"],
+    "*.{js,jsx,css}":["prettier"]
   }
 }
