@@ -1,0 +1,21 @@
+{
+  "name": "connect",
+  "version": "1.0.0",
+  "description": "It is an social media platform to connect with different peoples and interact with them.",
+  "main": "index.js",
+  "scripts": {
+    "server": "npm run dev --prefix server ",
+    "client": "npm start --prefix client",
+    "lint": "npm run lint --prefix client",
+    "format": "npm run format --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "author": "Shivansh Singh",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "husky": "^8.0.0"
+  }
+}

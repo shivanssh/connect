@@ -26,20 +26,6 @@ describe('Friend Component', () => {
     expect(screen.getByText('Test Occupation')).toBeInTheDocument()
   })
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
   test('Navigate function invoked', async () => {
     const navigateUserBtn = screen.getByTestId('user-profile-btn')
     await userEvent.click(navigateUserBtn)
