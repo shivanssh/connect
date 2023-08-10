@@ -62,28 +62,6 @@ const MyPostWidget = ({ picturePath }) => {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
   return (
     <WidgetWrapper>
       <FlexBetween gap="1.5rem">
