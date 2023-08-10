@@ -30,8 +30,7 @@
     "lint": "eslint --ignore-path .gitignore .",
     "eject": "react-scripts eject",
     "format": "prettier --ignore-path .gitignore --write \"**/*.{js,jsx,css,scss}\"",
-    "coverage": "npm run test -- --coverage --collectCoverageFrom='src/**/**/*.{js,jsx}'",
-    "prepare": "husky install"
+    "coverage": "npm run test -- --coverage --collectCoverageFrom='src/**/**/*.{js,jsx}'"
   },
   "eslintConfig": {
     "extends": [
