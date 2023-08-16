@@ -1,7 +1,7 @@
 import { Box, useMediaQuery } from '@mui/material'
 import Navbar from 'pages/Navbar'
 import FriendListWidget from 'pages/Widget/friendListWidget/FriendListWidget'
-import MyPostWidget from 'pages/Widget/MyPostWidget'
+import MyPostWidget from 'pages/Widget/myPostWidget/MyPostWidget'
 import PostsWidget from 'pages/Widget/PostsWidget'
 import UserWidget from 'pages/Widget/userWidget/UserWidget'
 import { useEffect, useState } from 'react'

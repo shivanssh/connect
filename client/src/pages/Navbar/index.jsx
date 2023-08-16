@@ -27,7 +27,6 @@ import {
 import { setLogout, setMode } from '../../state'
 
 const Navbar = () => {
-  console.log('----innavbar')
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
