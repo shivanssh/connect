@@ -1,6 +1,5 @@
 import { renderWithProviders, screen } from 'common/Utils/testUtils'
 import MyPostWidget from './MyPostWidget'
-import userEvent from '@testing-library/user-event'
 
 describe('MyPostWidget Component', () => {
   beforeEach(() => {
